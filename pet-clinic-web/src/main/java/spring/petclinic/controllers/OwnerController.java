@@ -13,7 +13,7 @@ import spring.petclinic.model.Owner;
 import spring.petclinic.services.OwnerService;
 
 import java.util.List;
-import java.util.Map;
+
 
 @RequestMapping("/owners")
 @Controller
@@ -43,7 +43,7 @@ public class OwnerController {
             owner.setLastName("");
         }
 
-        List<Owner> results = ownerService.findAllByLastNameLike(owner.getLastName());
+        List<Owner> results = ownerService.findAllByLastNameLike("%" + owner.getLastName() + "%");
         if (results.isEmpty()) {
             result.rejectValue("lastName", "notFound", "not found");
             return "owners/findOwners";
